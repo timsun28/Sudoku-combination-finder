@@ -1,22 +1,20 @@
 {
   "files": {
-    "main.css": "/SudokuKillerCombinationHelper/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/SudokuKillerCombinationHelper/static/js/main.2ff08d38.chunk.js",
-    "main.js.map": "/SudokuKillerCombinationHelper/static/js/main.2ff08d38.chunk.js.map",
-    "runtime-main.js": "/SudokuKillerCombinationHelper/static/js/runtime-main.20494cb3.js",
-    "runtime-main.js.map": "/SudokuKillerCombinationHelper/static/js/runtime-main.20494cb3.js.map",
-    "static/js/2.ba4486b7.chunk.js": "/SudokuKillerCombinationHelper/static/js/2.ba4486b7.chunk.js",
-    "static/js/2.ba4486b7.chunk.js.map": "/SudokuKillerCombinationHelper/static/js/2.ba4486b7.chunk.js.map",
+    "main.css": "/SudokuKillerCombinationHelper/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/SudokuKillerCombinationHelper/static/js/main.a276272c.chunk.js",
+    "main.js.map": "/SudokuKillerCombinationHelper/static/js/main.a276272c.chunk.js.map",
+    "runtime-main.js": "/SudokuKillerCombinationHelper/static/js/runtime-main.870c46e2.js",
+    "runtime-main.js.map": "/SudokuKillerCombinationHelper/static/js/runtime-main.870c46e2.js.map",
+    "static/js/2.7a0cafa3.chunk.js": "/SudokuKillerCombinationHelper/static/js/2.7a0cafa3.chunk.js",
+    "static/js/2.7a0cafa3.chunk.js.map": "/SudokuKillerCombinationHelper/static/js/2.7a0cafa3.chunk.js.map",
     "index.html": "/SudokuKillerCombinationHelper/index.html",
-    "precache-manifest.427d5034c964e24101d1fde1568157d0.js": "/SudokuKillerCombinationHelper/precache-manifest.427d5034c964e24101d1fde1568157d0.js",
-    "service-worker.js": "/SudokuKillerCombinationHelper/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "/SudokuKillerCombinationHelper/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.ba4486b7.chunk.js.LICENSE.txt": "/SudokuKillerCombinationHelper/static/js/2.ba4486b7.chunk.js.LICENSE.txt"
+    "static/css/main.6dea0f05.chunk.css.map": "/SudokuKillerCombinationHelper/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.7a0cafa3.chunk.js.LICENSE.txt": "/SudokuKillerCombinationHelper/static/js/2.7a0cafa3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.20494cb3.js",
-    "static/js/2.ba4486b7.chunk.js",
-    "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.2ff08d38.chunk.js"
+    "static/js/runtime-main.870c46e2.js",
+    "static/js/2.7a0cafa3.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.a276272c.chunk.js"
   ]
 }
