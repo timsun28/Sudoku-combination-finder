@@ -1,12 +1,23 @@
-import React, {Component} from 'react';
-import {Container, Grid} from "@material-ui/core";
-import {Slider} from "@material-ui/core";
-import {Paper, Typography} from "@material-ui/core";
-import {Checkbox, FormGroup, FormControlLabel, FormControl} from "@material-ui/core";
-import {LinearProgress} from "@material-ui/core";
-
+import React, { Component } from "react";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Slider from "@mui/material/Slider";
+import Paper from "@mui/material/Paper";
+import Typography from "@mui/material/Typography";
+import Checkbox from "@mui/material/Checkbox";
+import FormGroup from "@mui/material/FormGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import LinearProgress from "@mui/material/LinearProgress";
 export default class App extends Component {
-    state = {amountBoxes: 3, sumBoxes: 19, required: [], invalid: [], possibilities: [], sudokuNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9]};
+    state = {
+        amountBoxes: 3,
+        sumBoxes: 19,
+        required: [],
+        invalid: [],
+        possibilities: [],
+        sudokuNumbers: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    };
 
     constructor() {
         super();
@@ -35,7 +46,7 @@ export default class App extends Component {
         let correctPossibilities = [];
         allPossibilities.forEach((res) => {
             if (res.reduce((a, b) => a + b, 0) === this.state.sumBoxes) {
-                correctPossibilities.push(res)
+                correctPossibilities.push(res);
             }
         });
 
@@ -47,13 +58,13 @@ export default class App extends Component {
             correctPossibilities = correctPossibilities.filter((el) => !el.includes(req));
         });
         correctPossibilities = correctPossibilities.map((pos, index) => {
-            return {possibility: pos, key: index, style: 'primary', label: pos.join(' '), color: "#3f51b5"}
+            return { possibility: pos, key: index, style: "primary", label: pos.join(" "), color: "#3f51b5" };
         });
         return correctPossibilities;
     };
     handleChangeSlider = (value, id) => {
-        this.setState({[id]: value});
-        this.setState({possibilities: this.getPossibilities()});
+        this.setState({ [id]: value });
+        this.setState({ possibilities: this.getPossibilities() });
     };
     handleChangeCheckboxes = (isChecked, number, type) => {
         const currentArray = this.state[type];
@@ -63,126 +74,123 @@ export default class App extends Component {
             const index = currentArray.indexOf(number);
             if (index !== -1) currentArray.splice(index, 1);
         }
-        this.setState({[type]: currentArray});
-        this.setState({possibilities: this.getPossibilities()});
+        this.setState({ [type]: currentArray });
+        this.setState({ possibilities: this.getPossibilities() });
     };
 
     toggleBackgroundColorPaper = (paperId) => {
         const currentPossibilities = this.state.possibilities;
-        const clickedPossibilityIndex = currentPossibilities.findIndex(pos => {return pos.key === paperId});
+        const clickedPossibilityIndex = currentPossibilities.findIndex((pos) => {
+            return pos.key === paperId;
+        });
         currentPossibilities[clickedPossibilityIndex].hidden = !currentPossibilities[clickedPossibilityIndex].hidden;
-        this.setState({possibilities: currentPossibilities})
+        this.setState({ possibilities: currentPossibilities });
     };
 
     getCheckboxes = (type) => {
         return this.state.sudokuNumbers.map((number) => {
-            return <FormControlLabel
-                value="top"
-                control={
-                    <Checkbox color="primary"
-                              onChange={(e) =>
-                                  this.handleChangeCheckboxes(e.target.checked, number, type)
-                              }
-                    />
-                }
-                label={number}
-                key={number}
-                labelPlacement="bottom"
-            />
+            return (
+                <FormControlLabel
+                    value="top"
+                    control={
+                        <Checkbox
+                            color="primary"
+                            onChange={(e) => this.handleChangeCheckboxes(e.target.checked, number, type)}
+                        />
+                    }
+                    label={number}
+                    key={number}
+                    labelPlacement="bottom"
+                />
+            );
         });
     };
 
     getCombinationCards = () => {
-        return this.state.possibilities.map(data => {
-            const color = data.hidden ? '#AA3939' : '#3f51b5'
+        return this.state.possibilities.map((data) => {
+            const color = data.hidden ? "#AA3939" : "#3f51b5";
             return (
                 <Grid item xs={4}>
-                    <Paper style={{color:"white", backgroundColor: color, padding: 15, textAlign: 'center'}}
-                           key={data.key}
-                           onClick={() => {this.toggleBackgroundColorPaper(data.key)}}
+                    <Paper
+                        style={{ color: "white", backgroundColor: color, padding: 15, textAlign: "center" }}
+                        key={data.key}
+                        onClick={() => {
+                            this.toggleBackgroundColorPaper(data.key);
+                        }}
                     >
                         <b>{data.label}</b>
                     </Paper>
                 </Grid>
             );
-        })
+        });
     };
 
     getFrequencies = () => {
-        const frequencies = {1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, 8:0, 9:0}
-        const possibilities = this.state.possibilities.filter((pos) =>  !pos.hidden);
+        const frequencies = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0 };
+        const possibilities = this.state.possibilities.filter((pos) => !pos.hidden);
         const total = possibilities.length;
 
         possibilities.forEach((pos) => {
             pos.possibility.forEach((number) => {
                 frequencies[number] += 1;
-            })
-        })
+            });
+        });
 
-        return Object.keys(frequencies).map(freq => {
-            const percentage = frequencies[freq] === 0 ? 0 : frequencies[freq] / total
-            return(
+        return Object.keys(frequencies).map((freq) => {
+            const percentage = frequencies[freq] === 0 ? 0 : frequencies[freq] / total;
+            return (
                 <Grid item xs={4}>
-                    {freq}: {Math.round(percentage * 100)} % <LinearProgress key={freq} variant="determinate" value={percentage * 100} />
+                    {freq}: {Math.round(percentage * 100)} %{" "}
+                    <LinearProgress key={freq} variant="determinate" value={percentage * 100} />
                 </Grid>
-            )
-        })
-    }
+            );
+        });
+    };
 
     render() {
         return (
-            <Container fixed={false} maxWidth={'md'}>
-                <h1>
-                    Sudoku Killer Helper
-                </h1>
-                <Typography gutterBottom>
-                    Amount of squares:
-                </Typography>
+            <Container fixed={false} maxWidth={"md"}>
+                <h1>Sudoku Killer Helper</h1>
+                <Typography gutterBottom>Amount of squares:</Typography>
                 <Slider
                     defaultValue={3}
                     step={1}
                     min={2}
                     max={9}
                     marks
-                    valueLabelDisplay={'on'}
+                    valueLabelDisplay={"on"}
                     aria-labelledby={"discrete-slider-always"}
-                    onChangeCommitted={(e, value) => this.handleChangeSlider(value, 'amountBoxes')}
+                    onChangeCommitted={(e, value) => this.handleChangeSlider(value, "amountBoxes")}
                 />
-                <Typography gutterBottom>
-                    Sum of boxes:
-                </Typography>
+                <Typography gutterBottom>Sum of boxes:</Typography>
                 <Slider
                     defaultValue={19}
                     step={1}
                     min={3}
                     max={45}
                     marks
-                    valueLabelDisplay={'on'}
+                    valueLabelDisplay={"on"}
                     aria-labelledby={"discrete-slider-always"}
-                    onChangeCommitted={(e, value) => this.handleChangeSlider(value, 'sumBoxes')}
+                    onChangeCommitted={(e, value) => this.handleChangeSlider(value, "sumBoxes")}
                 />
                 <FormControl component="fieldset">
-                    <Typography gutterBottom>
-                        Required Values:
-                    </Typography>
+                    <Typography gutterBottom>Required Values:</Typography>
                     <FormGroup aria-label="position" row>
-                        {this.getCheckboxes('required')}
+                        {this.getCheckboxes("required")}
                     </FormGroup>
                 </FormControl>
                 <FormControl component="fieldset">
-                    <Typography gutterBottom>
-                        Invalid Values:
-                    </Typography>
+                    <Typography gutterBottom>Invalid Values:</Typography>
                     <FormGroup aria-label="position" row>
-                        {this.getCheckboxes('invalid')}
+                        {this.getCheckboxes("invalid")}
                     </FormGroup>
                 </FormControl>
-                <div style={{flexGrow: 1, paddingTop: 20}}>
+                <div style={{ flexGrow: 1, paddingTop: 20 }}>
                     <Grid container spacing={3}>
                         {this.getCombinationCards()}
                     </Grid>
                 </div>
-                <div style={{flexGrow: 1, paddingTop: 20}}>
+                <div style={{ flexGrow: 1, paddingTop: 20 }}>
                     <Grid container spacing={3}>
                         {this.getFrequencies()}
                     </Grid>
@@ -191,4 +199,3 @@ export default class App extends Component {
         );
     }
 }
-
