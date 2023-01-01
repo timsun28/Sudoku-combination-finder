@@ -5,11 +5,11 @@ The user could also add required or invalid numbers to filter the result.
 
 The app is a Progressive Web App, so it can be saved on the homescreen for later offline use.
 
-#### Checkout the [demo](https://xenodochial-aryabhata-1d2f41.netlify.app/)! 
+#### Checkout the [demo](https://sudoku-combination-finder.vercel.app/)! 
 
 
 ## Run it by yourself:
-### `npm start`
+### `npm run dev`
 
 This will run the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
