@@ -163,7 +163,7 @@ export default function App() {
     }
 
     return (
-        <Container fixed={false} maxWidth={"md"}>
+        <Container fixed={false} maxWidth={"md"} style={{ marginBottom: "2rem" }}>
             <h1>Sudoku Killer Helper</h1>
             <Typography id="amount-of-squares-label" gutterBottom>
                 Amount of squares:
