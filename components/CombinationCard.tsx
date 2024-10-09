@@ -1,14 +1,13 @@
-import { Posibility } from "@/app/page";
-import { useState } from "react";
+import { Possibility } from "@/app/page";
 
 export const CombinationCard = ({
     possibility,
     index,
     setPossibilities,
 }: {
-    possibility: Posibility;
+    possibility: Possibility;
     index: number;
-    setPossibilities: React.Dispatch<React.SetStateAction<Posibility[]>>;
+    setPossibilities: React.Dispatch<React.SetStateAction<Possibility[]>>;
 }) => {
     const handleClick = () => {
         setPossibilities((prevPossibilities) => {
