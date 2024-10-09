@@ -1,7 +1,6 @@
 {
     "name": "killer-sudoku-solver",
-    "version": "0.1.0",
-    "private": true,
+    "version": "1.0",
     "homepage": ".",
     "dependencies": {
         "@emotion/react": "^11.13.3",
