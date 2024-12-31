@@ -4,28 +4,30 @@ import Typography from "@mui/material/Typography";
 
 interface SliderComponentProps {
     label: string;
-    defaultValue: number;
+    value: number;
     min: number;
     max: number;
     onChange: (value: number) => void;
 }
 
-export const SliderComponent: React.FC<SliderComponentProps> = ({ label, defaultValue, min, max, onChange }) => {
+export const SliderComponent: React.FC<SliderComponentProps> = ({ label, value, min, max, onChange }) => {
+    const id = `${label.toLowerCase()}-label`;
+
     return (
-        <>
-            <Typography id={`${label.toLowerCase()}-label`} gutterBottom>
-                {label}:
+        <div className="w-full">
+            <Typography id={id} gutterBottom>
+                {label}: {value}
             </Typography>
             <Slider
-                defaultValue={defaultValue}
+                value={value}
                 step={1}
                 min={min}
                 max={max}
                 marks
-                valueLabelDisplay="on"
-                aria-labelledby={`${label.toLowerCase()}-label`}
-                onChangeCommitted={(e, value) => onChange(value as number)}
+                valueLabelDisplay="auto"
+                aria-labelledby={id}
+                onChange={(_, value) => onChange(value as number)}
             />
-        </>
+        </div>
     );
 };

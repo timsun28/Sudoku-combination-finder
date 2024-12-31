@@ -8,22 +8,38 @@ import Typography from "@mui/material/Typography";
 interface CheckboxGroupProps {
     label: string;
     numbers: number[];
-    onChange: (isChecked: boolean, number: number) => void;
+    selectedNumbers: number[];
+    onChange: (numbers: number[]) => void;
 }
 
-export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ label, numbers, onChange }) => {
+export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ label, numbers, selectedNumbers, onChange }) => {
+    const handleChange = (number: number, isChecked: boolean) => {
+        if (isChecked) {
+            onChange([...selectedNumbers, number]);
+        } else {
+            onChange(selectedNumbers.filter((n) => n !== number));
+        }
+    };
+
     return (
-        <FormControl component="fieldset">
-            <Typography gutterBottom>{label}:</Typography>
-            <FormGroup aria-label="position" row>
+        <FormControl component="fieldset" className="w-full">
+            <Typography gutterBottom>{label}</Typography>
+            <FormGroup row className="grid grid-cols-5 md:grid-cols-9 justify-center gap-2">
                 {numbers.map((number) => (
                     <FormControlLabel
                         key={number}
-                        value="top"
-                        control={<Checkbox color="primary" onChange={(e) => onChange(e.target.checked, number)} />}
+                        sx={{
+                            margin: 0,
+                        }}
+                        control={
+                            <Checkbox
+                                checked={selectedNumbers.includes(number)}
+                                onChange={(e) => handleChange(number, e.target.checked)}
+                                color="primary"
+                            />
+                        }
                         label={number}
                         labelPlacement="bottom"
-                        className="mx-1"
                     />
                 ))}
             </FormGroup>

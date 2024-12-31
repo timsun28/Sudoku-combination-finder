@@ -1,28 +1,25 @@
-import { Possibility } from "@/app/page";
+import React from "react";
+import { Possibility } from "@/types/sudoku";
 
-export const CombinationCard = ({
-    possibility,
-    index,
-    setPossibilities,
-}: {
+interface CombinationCardProps {
     possibility: Possibility;
-    index: number;
-    setPossibilities: React.Dispatch<React.SetStateAction<Possibility[]>>;
-}) => {
-    const handleClick = () => {
-        setPossibilities((prevPossibilities) => {
-            return prevPossibilities.map((pos, i) => (i === index ? { ...pos, hidden: !pos.hidden } : pos));
-        });
-    };
+    onToggle: () => void;
+}
+
+export const CombinationCard: React.FC<CombinationCardProps> = ({ possibility, onToggle }) => {
+    const { numbers, isHidden } = possibility;
 
     return (
-        <div
-            className={`flex flex-col items-center p-2 rounded-md px-4 justify-center ${
-                possibility.hidden ? "bg-red-500" : "bg-blue-500"
-            }`}
-            onClick={handleClick}
+        <button
+            onClick={onToggle}
+            className={`
+                p-4 rounded-lg transition-colors duration-200
+                ${isHidden ? "bg-red-500 hover:bg-red-600" : "bg-blue-500 hover:bg-blue-600"}
+                focus:outline-none focus:ring-2 focus:ring-offset-2
+                ${isHidden ? "focus:ring-red-500" : "focus:ring-blue-500"}
+            `}
         >
-            <div className="text-white text-center text-xl font-bold">{possibility.possibility.join(" ")}</div>
-        </div>
+            <div className="text-white text-xl font-bold">{numbers.join(" ")}</div>
+        </button>
     );
 };
