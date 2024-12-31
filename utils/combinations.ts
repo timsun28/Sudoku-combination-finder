@@ -1,3 +1,5 @@
+import { FrequencyItem, Possibility } from "@/types/sudoku";
+
 /**
  * Generates all possible combinations of numbers that satisfy the Sudoku Killer constraints
  */
