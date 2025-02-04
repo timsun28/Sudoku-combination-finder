@@ -49,7 +49,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body className={`${inter.className} min-h-screen max-w-screen-md mx-auto`}>{children}</body>
+            <body className={`${inter.className} min-h-screen max-w-(--breakpoint-md) mx-auto`}>{children}</body>
         </html>
     );
 }
