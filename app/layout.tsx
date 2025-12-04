@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,7 +50,9 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body className={`${inter.className} min-h-screen max-w-(--breakpoint-md) mx-auto`}>{children}</body>
+            <body className={cn(inter.className, "min-h-screen bg-background font-sans text-foreground antialiased")}>
+                {children}
+            </body>
         </html>
     );
 }

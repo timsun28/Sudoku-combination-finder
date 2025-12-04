@@ -1,6 +1,6 @@
 import React from "react";
-import Slider from "@mui/material/Slider";
-import Typography from "@mui/material/Typography";
+import { Slider } from "@/components/ui/slider";
+import { Label } from "@/components/ui/label";
 
 interface SliderComponentProps {
     label: string;
@@ -11,22 +11,19 @@ interface SliderComponentProps {
 }
 
 export const SliderComponent: React.FC<SliderComponentProps> = ({ label, value, min, max, onChange }) => {
-    const id = `${label.toLowerCase()}-label`;
-
     return (
-        <div className="w-full">
-            <Typography id={id} gutterBottom>
-                {label}: {value}
-            </Typography>
+        <div className="w-full space-y-4">
+            <div className="flex justify-between items-center">
+                <Label className="text-base font-medium">{label}</Label>
+                <span className="text-sm font-mono bg-secondary px-2 py-1 rounded-md min-w-8 text-center">{value}</span>
+            </div>
             <Slider
-                value={value}
-                step={1}
+                value={[value]}
                 min={min}
                 max={max}
-                marks
-                valueLabelDisplay="auto"
-                aria-labelledby={id}
-                onChange={(_, value) => onChange(value as number)}
+                step={1}
+                onValueChange={(vals) => onChange(vals[0])}
+                className="py-2"
             />
         </div>
     );

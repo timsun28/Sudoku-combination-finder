@@ -1,9 +1,6 @@
 import React from "react";
-import Checkbox from "@mui/material/Checkbox";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormControl from "@mui/material/FormControl";
-import Typography from "@mui/material/Typography";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 
 interface CheckboxGroupProps {
     label: string;
@@ -22,27 +19,25 @@ export const CheckboxGroup: React.FC<CheckboxGroupProps> = ({ label, numbers, se
     };
 
     return (
-        <FormControl component="fieldset" className="w-full">
-            <Typography gutterBottom>{label}</Typography>
-            <FormGroup row className="grid grid-cols-5 md:grid-cols-9 justify-center gap-2">
+        <div className="space-y-3">
+            <Label className="text-base font-medium">{label}</Label>
+            <div className="grid grid-cols-5 md:grid-cols-9 gap-2">
                 {numbers.map((number) => (
-                    <FormControlLabel
-                        key={number}
-                        sx={{
-                            margin: 0,
-                        }}
-                        control={
-                            <Checkbox
-                                checked={selectedNumbers.includes(number)}
-                                onChange={(e) => handleChange(number, e.target.checked)}
-                                color="primary"
-                            />
-                        }
-                        label={number}
-                        labelPlacement="bottom"
-                    />
+                    <div key={number} className="flex flex-col items-center space-y-2">
+                        <Checkbox
+                            id={`${label}-${number}`}
+                            checked={selectedNumbers.includes(number)}
+                            onCheckedChange={(checked) => handleChange(number, checked as boolean)}
+                        />
+                        <Label
+                            htmlFor={`${label}-${number}`}
+                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                        >
+                            {number}
+                        </Label>
+                    </div>
                 ))}
-            </FormGroup>
-        </FormControl>
+            </div>
+        </div>
     );
 };
